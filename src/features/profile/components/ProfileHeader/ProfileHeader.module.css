@@ -1,0 +1,93 @@
+/* ==========================================================================
+   ProfileHeader
+   Avatar, display name, subtitle, edit avatar button.
+   ========================================================================== */
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ne-2);
+  padding: var(--ne-2) var(--ne-3);
+  max-width: 320px;
+  width: fit-content;
+  align-self: flex-start;
+  background-color: var(--ne-surface);
+  border: 1px solid var(--ne-border);
+  border-radius: var(--ne-radius-md);
+  box-shadow: var(--ne-shadow-md);
+}
+
+.avatarWrap {
+  position: relative;
+  border-radius: 50%;
+}
+
+.avatar {
+  display: block;
+}
+
+.fileInput {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.editBtn {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+  padding: 0;
+}
+
+.avatarWrap:hover .editBtn,
+.editBtn:focus-visible {
+  opacity: 1;
+}
+
+.editBtn:focus-visible {
+  outline: 2px solid var(--ne-primary);
+  outline-offset: 3px;
+}
+
+.editBtnIcon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.editBtnLabel {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.name {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--ne-text);
+  text-align: center;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--ne-muted);
+  text-align: center;
+}
