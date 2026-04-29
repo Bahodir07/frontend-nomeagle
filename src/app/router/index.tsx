@@ -9,7 +9,7 @@ import { GuessTheLandmarkPage } from '../../pages/app/Game/GuessTheLandmarkPage'
 import { LessonPage } from '../../pages/app/Lesson';
 import { CountryRoadmapPage } from '../../pages/app/CountryRoadmap/CountryRoadmapPage';
 import { AuthLayout } from '../../layouts/AuthLayout';
-import { LoginPage, RegisterPage } from '../../pages/auth';
+import { LoginPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage } from '../../pages/auth';
 import { LandingPage } from '../../pages/LandingPage';
 
 /**
@@ -42,6 +42,14 @@ export const router = createBrowserRouter([
       {
         path: '/register',
         element: <RegisterPage />,
+      },
+      {
+        path: '/forgot-password',
+        element: <ForgotPasswordPage />,
+      },
+      {
+        path: '/reset-password',
+        element: <ResetPasswordPage />,
       },
     ],
   },
@@ -98,6 +106,40 @@ export const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <GuessTheLandmarkPage />
+      </ProtectedRoute>
+    ),
+  },
+
+  /* Standalone game routes (no country code required) */
+  {
+    path: '/app/games/culture-match',
+    element: (
+      <ProtectedRoute>
+        <CultureMatchRushPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/app/games/festival',
+    element: (
+      <ProtectedRoute>
+        <FestivalTimelinePage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/app/games/landmark',
+    element: (
+      <ProtectedRoute>
+        <GuessTheLandmarkPage />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/app/games/sprint',
+    element: (
+      <ProtectedRoute>
+        <StreetFoodSprintPage />
       </ProtectedRoute>
     ),
   },

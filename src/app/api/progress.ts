@@ -62,13 +62,17 @@ export async function completeLesson(
     countrySlug: string,
     moduleSlug: string,
     lessonSlug: string,
-    durationSeconds = 0
+    durationSeconds = 0,
+    correctAnswers?: number,
+    totalAttempts?: number
 ) {
+    const body: Record<string, number> = { duration_seconds: durationSeconds };
+    if (correctAnswers !== undefined) body.correct_answers = correctAnswers;
+    if (totalAttempts  !== undefined) body.total_attempts  = totalAttempts;
+
     const { data } = await http.post(
         `/api/countries/${countrySlug}/modules/${moduleSlug}/lessons/${lessonSlug}/complete`,
-        {
-            duration_seconds: durationSeconds,
-        }
+        body
     );
 
     return data;
@@ -128,6 +132,26 @@ export async function reviewFlashcard(
             flipped_at: flippedAt,
         }
     );
+    return data;
+}
+
+export type GameType = 'culture_match' | 'festival_timeline' | 'guess_landmark' | 'street_food_sprint';
+
+export interface GameCompletionResponse {
+    xp_earned: number;
+    total_xp: number;
+}
+
+export async function submitGameCompletion(
+    gameType: GameType,
+    xpEarned: number,
+    score?: number,
+): Promise<GameCompletionResponse> {
+    const { data } = await http.post<GameCompletionResponse>('/api/games/complete', {
+        game_type: gameType,
+        xp_earned: xpEarned,
+        score,
+    });
     return data;
 }
 
